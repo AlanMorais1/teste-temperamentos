@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste dos 4 Temperamentos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            padding: 20px; 
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            background: white; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            overflow: hidden;
+        }
+        h1 { 
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); 
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            font-size: 26px; 
+        }
+        .intro { 
+            text-align: center; 
+            padding: 25px; 
+            background: #f8f9fa; 
+            font-size: 16px; 
+            color: #555; 
+        }
+        .secao { 
+            margin: 25px 30px; 
+            padding: 25px; 
+            border: 3px solid #e9ecef; 
+            border-radius: 15px; 
+            background: #f8f9fa;
+        }
+        .pergunta { 
+            margin: 12px 0; 
+            padding: 15px; 
+            background: white; 
+            border-radius: 10px; 
+            border-left: 5px solid #4ecdc4; 
+            font-size: 16px;
+        }
+        label { 
+            display: block; 
+            margin: 8px 0; 
+            padding: 12px 18px; 
+            background: white; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            font-size: 16px;
+        }
+        label:hover { background: #e3f2fd; }
+        input[type="radio"] { 
+            margin-right: 12px; 
+            transform: scale(1.3); 
+        }
+        .total { 
+            text-align: right; 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin-top: 15px; 
+            padding: 10px; 
+            background: #e9ecef; 
+            border-radius: 8px;
+        }
+        button { 
+            width: 100%; 
+            background: linear-gradient(45deg, #4ecdc4, #44a08d); 
+            color: white; 
+            border: none; 
+            padding: 25px; 
+            font-size: 20px; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            margin: 30px; 
+            font-weight: bold;
+        }
+        button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(78,205,196,0.4); 
+        }
+        #resultado { 
+            display: none; 
+            margin: 30px; 
+            padding: 40px; 
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); 
+            border-radius: 20px; 
+            text-align: center; 
+        }
+        .temperamento { font-size: 32px; font-weight: bold; color: #2c3e50; margin: 20px 0; }
+        .score { 
+            display: inline-block; 
+            margin: 10px; 
+            padding: 15px 25px; 
+            background: white; 
+            border-radius: 10px; 
+            font-size: 18px; 
+            font-weight: bold;
+        }
+        .parabens { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: linear-gradient(45deg, #4ecdc4, #44a08d); 
+            color: white; 
+            padding: 30px 40px; 
+            border-radius: 20px; 
+            font-size: 28px; 
+            font-weight: bold; 
+            text-align: center; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+            z-index: 1000;
+            display: none;
+        }
+        .fechar { 
+            background: rgba(255,255,255,0.2); 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Teste dos 4 Temperamentos</h1>
+        <p class="intro">
+            Responda Sim ou Não para cada frase com base no seu comportamento habitual. 
+            <br>Maior contagem = seu temperamento principal. Tempo: 4-5 minutos.
+        </p>
+
+        <form id="testeForm">
+            <!-- PRIMEIRA SEÇÃO (Sanguíneo) -->
+            <div class="secao">
+                <div class="pergunta">Gosto de conversar e fazer novos amigos rapidamente?</div>
+                <label><input type="radio" name="q1" value="sim"> Sim</label>
+                <label><input type="radio" name="q1" value="nao"> Não</label>
+                
+                <div class="pergunta">Sou extrovertido e me empolgo fácil com ideias novas?</div>
+                <label><input type="radio" name="q2" value="sim"> Sim</label>
+                <label><input type="radio" name="q2" value="nao"> Não</label>
+                
+                <div class="pergunta">Mudo de planos sem problema para me divertir?</div>
+                <label><input type="radio" name="q3" value="sim"> Sim</label>
+                <label><input type="radio" name="q3" value="nao"> Não</label>
+                
+                <div class="pergunta">Gosto de estar no centro das atenções em grupos?</div>
+                <label><input type="radio" name="q4" value="sim"> Sim</label>
+                <label><input type="radio" name="q4" value="nao"> Não</label>
+                
+                <div class="pergunta">Falo rápido e com animação sobre assuntos interessantes?</div>
+                <label><input type="radio" name="q5" value="sim"> Sim</label>
+                <label><input type="radio" name="q5" value="nao"> Não</label>
+                
+                <div class="pergunta">Tenho muitos amigos e gosto de festas sociais?</div>
+                <label><input type="radio" name="q6" value="sim"> Sim</label>
+                <label><input type="radio" name="q6" value="nao"> Não</label>
+                
+                <div class="pergunta">Esqueço tarefas chatas facilmente quando algo mais interessante aparece?</div>
+                <label><input type="radio" name="q7" value="sim"> Sim</label>
+                <label><input type="radio" name="q7" value="nao"> Não</label>
+                
+                <div class="pergunta">Sou otimista e vejo o lado bom das situações?</div>
+                <label><input type="radio" name="q8" value="sim"> Sim</label>
+                <label><input type="radio" name="q8" value="nao"> Não</label>
+                
+                <div class="total" id="total1">Total Seção 1: ___ /8</div>
+            </div>
+
+            <!-- SEGUNDA SEÇÃO (Colérico) -->
+            <div class="secao">
+                <div class="pergunta">Assumo liderança e tomo decisões rápidas?</div>
+                <label><input type="radio" name="q9" value="sim"> Sim</label>
+                <label><input type="radio" name="q9" value="nao"> Não</label>
+                
+                <div class="pergunta">Fico impaciente com lentidão ou erros alheios?</div>
+                <label><input type="radio" name="q10" value="sim"> Sim</label>
+                <label><input type="radio" name="q10" value="nao"> Não</label>
+                
+                <div class="pergunta">Defendo minhas opiniões com paixão e energia?</div>
+                <label><input type="radio" name="q11" value="sim"> Sim</label>
+                <label><input type="radio" name="q11" value="nao"> Não</label>
+                
+                <div class="pergunta">Sou competitivo e gosto de vencer desafios?</div>
+                <label><input type="radio" name="q12" value="sim"> Sim</label>
+                <label><input type="radio" name="q12" value="nao"> Não</label>
+                
+                <div class="pergunta">Tenho facilidade para motivar outras pessoas a agir?</div>
+                <label><input type="radio" name="q13" value="sim"> Sim</label>
+                <label><input type="radio" name="q13" value="nao"> Não</label>
+                
+                <div class="pergunta">Prefiro resolver problemas imediatamente em vez de esperar?</div>
+                <label><input type="radio" name="q14" value="sim"> Sim</label>
+                <label><input type="radio" name="q14" value="nao"> Não</label>
+                
+                <div class="pergunta">Fico frustrado quando as coisas não saem como planejei?</div>
+                <label><input type="radio" name="q15" value="sim"> Sim</label>
+                <label><input type="radio" name="q15" value="nao"> Não</label>
+                
+                <div class="pergunta">Tenho energia para trabalhar duro quando acredito em algo?</div>
+                <label><input type="radio" name="q16" value="sim"> Sim</label>
+                <label><input type="radio" name="q16" value="nao"> Não</label>
+                
+                <div class="total" id="total2">Total Seção 2: ___ /8</div>
+            </div>
+
+            <!-- TERCEIRA SEÇÃO (Fleumático) -->
+            <div class="secao">
+                <div class="pergunta">Prefiro rotina tranquila e evito brigas?</div>
+                <label><input type="radio" name="q17" value="sim"> Sim</label>
+                <label><input type="radio" name="q17" value="nao"> Não</label>
+                
+                <div class="pergunta">Sou paciente e bom ouvinte com os outros?</div>
+                <label><input type="radio" name="q18" value="sim"> Sim</label>
+                <label><input type="radio" name="q18" value="nao"> Não</label>
+                
+                <div class="pergunta">Fico calmo sob pressão e valorizo harmonia?</div>
+                <label><input type="radio" name="q19" value="sim"> Sim</label>
+                <label><input type="radio" name="q19" value="nao"> Não</label>
+                
+                <div class="pergunta">Sou leal às pessoas e instituições que respeito?</div>
+                <label><input type="radio" name="q20" value="sim"> Sim</label>
+                <label><input type="radio" name="q20" value="nao"> Não</label>
+                
+                <div class="pergunta">Prefiro trabalhar em paz sem interrupções constantes?</div>
+                <label><input type="radio" name="q21" value="sim"> Sim</label>
+                <label><input type="radio" name="q21" value="nao"> Não</label>
+                
+                <div class="pergunta">Demoro mais tempo para tomar decisões importantes?</div>
+                <label><input type="radio" name="q22" value="sim"> Sim</label>
+                <label><input type="radio" name="q22" value="nao"> Não</label>
+                
+                <div class="pergunta">Evito conflitos sempre que possível?</div>
+                <label><input type="radio" name="q23" value="sim"> Sim</label>
+                <label><input type="radio" name="q23" value="nao"> Não</label>
+                
+                <div class="pergunta">Sou confiável e cumpro o que prometo?</div>
+                <label><input type="radio" name="q24" value="sim"> Sim</label>
+                <label><input type="radio" name="q24" value="nao"> Não</label>
+                
+                <div class="total" id="total3">Total Seção 3: ___ /8</div>
+            </div>
+
+            <!-- QUARTA SEÇÃO (Melancólico) -->
+            <div class="secao">
+                <div class="pergunta">Analiso detalhes e busco perfeição no trabalho?</div>
+                <label><input type="radio" name="q25" value="sim"> Sim</label>
+                <label><input type="radio" name="q25" value="nao"> Não</label>
+                
+                <div class="pergunta">Sinto emoções intensas e sou sensível a críticas?</div>
+                <label><input type="radio" name="q26" value="sim"> Sim</label>
+                <label><input type="radio" name="q26" value="nao"> Não</label>
+                
+                <div class="pergunta">Gosto de planejar tudo com cuidado e criatividade?</div>
+                <label><input type="radio" name="q27" value="sim"> Sim</label>
+                <label><input type="radio" name="q27" value="nao"> Não</label>
+                
+                <div class="pergunta">Penso muito antes de falar ou tomar decisões?</div>
+                <label><input type="radio" name="q28" value="sim"> Sim</label>
+                <label><input type="radio" name="q28" value="nao"> Não</label>
+                
+                <div class="pergunta">Tenho facilidade para artes, música ou escrita?</div>
+                <label><input type="radio" name="q29" value="sim"> Sim</label>
+                <label><input type="radio" name="q29" value="nao"> Não</label>
+                
+                <div class="pergunta">Fico preocupado quando algo não está perfeito?</div>
+                <label><input type="radio" name="q30" value="sim"> Sim</label>
+                <label><input type="radio" name="q30" value="nao"> Não</label>
+                
+                <div class="pergunta">Gosto de trabalhar sozinho em projetos importantes?</div>
+                <label><input type="radio" name="q31" value="sim"> Sim</label>
+                <label><input type="radio" name="q31" value="nao"> Não</label>
+                
+                <div class="pergunta">Analiso situações de vários ângulos diferentes?</div>
+                <label><input type="radio" name="q32" value="sim"> Sim</label>
+                <label><input type="radio" name="q32" value="nao"> Não</label>
+                
+                <div class="total" id="total4">Total Seção 4: ___ /8</div>
+            </div>
+
+            <button type="button" onclick="calcularResultado()">🔍 Ver Meu Resultado</button>
+        </form>
+
+        <div id="resultado"></div>
+    </div>
+
+    <!-- POPUP PARABÉNS -->
+    <div id="popupParabens" class="parabens">
+        <div>PARABÉNS! VOCÊ TEM SEU TEMPERAMENTO EM <span id="resultadoNome"></span></div>
+        <br>
+        <button class="fechar" onclick="fecharPopup()">Fechar</button>
+    </div>
+
+    <script>
+        function calcularResultado() {
+            const scores = { 
+                sanguineo: 0, 
+                colerico: 0, 
+                fleumatico: 0, 
+                melancholico: 0 
+            };
+            
+            // Calcula pontuações para 32 perguntas
+            for (let i = 1; i <= 32; i++) {
+                const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!resposta) {
+                    alert('❌ Por favor, responda todas as 32 perguntas!');
+                    return;
+                }
+                if (resposta.value === 'sim') {
+                    if (i <= 8) scores.sanguineo++;
+                    else if (i <= 16) scores.colerico++;
+                    else if (i <= 24) scores.fleumatico++;
+                    else scores.melancholico++;
+                }
+            }
+
+            // Atualiza os campos "Total Seção X: ___ /8"
+            document.getElementById('total1').textContent = `Total Seção 1: ${scores.sanguineo} /8`;
+            document.getElementById('total2').textContent = `Total Seção 2: ${scores.colerico} /8`;
+            document.getElementById('total3').textContent = `Total Seção 3: ${scores.fleumatico} /8`;
+            document.getElementById('total4').textContent = `Total Seção 4: ${scores.melancholico} /8`;
+
+            // Encontra resultado dominante
+            const maxScore = Math.max(...Object.values(scores));
+            const dominante = Object.entries(scores).find(([key, value]) => value === maxScore)[0];
+            const nomeTemperamento = getNome(dominante);
+
+            // Mostra popup PARABÉNS
+            document.getElementById('resultadoNome').textContent = nomeTemperamento;
+            document.getElementById('popupParabens').style.display = 'block';
+
+            // Gera resultado detalhado
+            let resultado = `
+                <div style="display: block;">
+                    <h2>🎯 SEU RESULTADO COMPLETO</h2>
+                    <div style="margin: 20px 0;">
+                        <span class="score">Seção 1: ${scores.sanguineo}/8</span>
+                        <span class="score">Seção 2: ${scores.colerico}/8</span>
+                        <span class="score">Seção 3: ${scores.fleumatico}/8</span>
+                        <span class="score">Seção 4: ${scores.melancholico}/8</span>
+                    </div>
+                    <div class="temperamento">
+                        ${getEmoji(dominante)} SEU TEMPERAMENTO PRINCIPAL: ${nomeTemperamento.toUpperCase()}! (${maxScore}/8)
+                    </div>
+                    ${getInterpretacao(dominante, maxScore)}
+                    <br><br>
+                    <button onclick="location.reload()" style="width: 250px; padding: 15px; font-size: 16px;">🔄 Novo Teste</button>
+                </div>
+            `;
+            document.getElementById('resultado').innerHTML = resultado;
+            document.getElementById('resultado').style.display = 'block';
+        }
+
+        function fecharPopup() {
+            document.getElementById('popupParabens').style.display = 'none';
+        }
+
+        function getEmoji(temp) {
+            const emojis = {
+                'sanguineo': '🎉',
+                'colerico': '🔥', 
+                'fleumatico': '🕊️',
+                'melancholico': '📚'
+            };
+            return emojis[temp] || '🧠';
+        }
+
+        function getNome(temp) {
+            const nomes = {
+                'sanguineo': 'Sanguíneo',
+                'colerico': 'Colérico',
+                'fleumatico': 'Fleumático', 
+                'melancholico': 'Melancólico'
+            };
+            return nomes[temp] || temp;
+        }
+
+        function getInterpretacao(temp, score) {
+            const interpretacoes = {
+                sanguineo: `
+                    <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <strong>✅ ${score}/8 SANGUÍNEO:</strong> Temperamento ${score >= 6 ? 'DOMINANTE FORTE' : score >= 4 ? 'PREDOMINANTE' : 'PRESENTE'}!<br>
+                        <strong>Características:</strong> Sociável, animado, criativo, comunicativo<br>
+                        <strong>💡 Dica:</strong> Foque em metas curtas e organize seu tempo para maximizar seu potencial.
+                    </div>
+                `,
+                colerico: `
+                    <div style="background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <strong>✅ ${score}/8 COLÉRICO:</strong> Temperamento ${score >= 6 ? 'DOMINANTE FORTE' : score >= 4 ? 'PREDOMINANTE' : 'PRESENTE'}!<br>
+                        <strong>Características:</strong> Líder, decidido, orientado a resultados<br>
+                        <strong>💡 Dica:</strong> Pratique paciência e escuta ativa em equipe.
+                    </div>
+                `,
+                fleumatico: `
+                    <div style="background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <strong>✅ ${score}/8 FLEUMÁTICO:</strong> Temperamento ${score >= 6 ? 'DOMINANTE FORTE' : score >= 4 ? 'PREDOMINANTE' : 'PRESENTE'}!<br>
+                        <strong>Características:</strong> Calmo, leal, paciente, diplomático<br>
+                        <strong>💡 Dica:</strong> Assuma mais iniciativa para sair da zona de conforto.
+                    </div>
+                `,
+                melancholico: `
+                    <div style="background: #e2d9f3; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <strong>✅ ${score}/8 MELANCÓLICO:</strong> Temperamento ${score >= 6 ? 'DOMINANTE FORTE' : score >= 4 ? 'PREDOMINANTE' : 'PRESENTE'}!<br>
+                        <strong>Características:</strong> Analítico, profundo, perfeccionista, criativo<br>
+                        <strong>💡 Dica:</strong> Equilibre detalhes com ação prática para melhores resultados.
+                    </div>
+                `
+            };
+            return interpretacoes[temp] || '';
+        }
+    </script>
+</body>
+</html>
